@@ -2,34 +2,34 @@
 
 In this report, I present my work during the Google Summer of Code (GSoC) 2022 program. In the project, I contributed code to a published book [Probabilistic Machine Learning: An Introduction](https://probml.github.io/pml-book/book1.html) (*book1*) and an upcoming book [Probabilistic Machine Learning: Advanced Topics](https://probml.github.io/pml-book/book2.html) (*book2*) by [Kevin P. Murphy](https://www.cs.ubc.ca/~murphyk/).
 
-I mainly worked on two repositories: i) [pyprobml](https://github.com/probml/pyprobml) (public): a repositiry containing most of the source code for the book; and ii) [bookv2](https://github.com/probml/bookv2) (private): a repository containing source code of the book.
+I mainly worked on two repositories: i) [pyprobml](https://github.com/probml/pyprobml) (public): a repository containing most of the source code for the book; and ii) [bookv2](https://github.com/probml/bookv2) (private): a repository containing source code of the book.
 
 ## Highlights
-* I worked on this project for 16 weeks and on an average 42 hours a week.
+* I worked on this project for 16 weeks and, on average, 42 hours a week.
 * I refactored the [pyprobml](https://github.com/probml/pyprobml) repository to shift from `.py` files to `.ipynb` files containing code to reproduce figures.
 * I added automatic code testing via GitHub workflows to [pyprobml](https://github.com/probml/pyprobml).
-* I generated code for several figures in "Gaussian processes" chapter.
-* I developed a Bayesian optimization library in JAX called [BIJAX](https://github.com/patel-zeel/bijax).
+* I generated code for several figures in the "Gaussian processes" chapter.
+* I developed a Bayesian inference library in JAX called [BIJAX](https://github.com/patel-zeel/bijax).
 * I co-authored a section (34.7 - Active learning) with Dr. Kevin P. Murphy.
-* I learned advanced tools of JAX library.
+* I learned advanced tools of the JAX library.
 
 ## `.py` to `.ipynb` conversion
 ### Background
-In [earlier version of repo](https://github.com/probml/pyprobml/tree/3ac9f09de7868ba1d534d4146779d55e72b41641), code for each figure was stored in `.py` files and there were [Jupyter notebooks](https://github.com/probml/pml-book/tree/bd04fe5e27361e04bbffb1b6b66a5213da73010e/pml1/figure_notebooks), each per chapter, containing cells to execute each of those `.py` files. Link to those cells were stored in a private firestore database and a short link was given with each figure in *book1*. 
+In [earlier version of repo](https://github.com/probml/pyprobml/tree/3ac9f09de7868ba1d534d4146779d55e72b41641), code for each figure was stored in `.py` files, and there were [Jupyter notebooks](https://github.com/probml/pml-book/tree/bd04fe5e27361e04bbffb1b6b66a5213da73010e/pml1/figure_notebooks), each per chapter, containing cells to execute each of those `.py` files. Link to those cells were stored in a private firestore database and a short link was given with each figure in *book1*. 
 
-There were several challanges with this setup:
+There were several challenges with this setup:
 * It was difficult to maintain and keep this setup up to date due to manual intervention needed at multiple places.
-* Due to full `.py` file execution, interactivity with code was minimal.
+* Due to complete `.py` file execution, interactivity with code was minimal.
 
 ### Solution
-After brainstorming, we decided to move from `.py` file per figure to a self-contained `.ipynb` file per figure which alleviated the need of notebook per chapter. This also enabled readers to play with the notebook more interactively or view the cached figures in the notebook. In the final version, we have notebooks stored in folders renamed as chapter numbers and integrated with book without the need of firestore database.
+After brainstorming, we decided to move from the `.py` file per figure to a self-contained `.ipynb` file per figure, alleviating the need for a notebook per chapter. This also enabled readers to play with the notebook more interactively or view the cached figures in the notebook. In the final version, we have notebooks stored in folders renamed as chapter numbers and integrated with the book without needing a *firestore* database.
 
 ## Automatic code testing
 ### Background
-Code for any repository needs be up to date with packages it depends on. [pyprobml](https://github.com/probml/pyprobml) depends on lots of packages and thus automatic GitHub workflow testing can be beneficial to test the code on every push.
+The code on any excellent repository should be up to date with the packages it depends on. [pyprobml](https://github.com/probml/pyprobml) depends on many packages; thus, automatic GitHub workflow testing can be beneficial to test the code on every push.
 
 ### Solution
-I implemented majority part of [workflow](https://github.com/probml/pyprobml/blob/master/.github/workflows/notebooks.yml) which: i) runs and chekcks all notebooks on every push; ii) statically checks if imported modules are installed/going to be installed locally or not; iii) checks code quality with `black` and iv) pushes some useful statistic to other branches e.g. `auto_generated_figure`. Following PRs are major in making these changes:
+I implemented the majority part of [workflow](https://github.com/probml/pyprobml/blob/master/.github/workflows/notebooks.yml), which: i) runs and checks all notebooks on every push; ii) statically checks if imported modules are installed/going to be installed locally or not; iii) checks code quality with `black` and iv) pushes some useful statistic to other branches, e.g. `auto_generated_figure.` Following PRs are central in making these changes:
 
 | URL                                                     | Title                                                           |
 |:--------------------------------------------------------|:----------------------------------------------------------------|
@@ -39,7 +39,7 @@ I implemented majority part of [workflow](https://github.com/probml/pyprobml/blo
 
 ## Figures for Gaussian processes chapter
 
-Gaussian processes are related to my thesis topic and thus I wrote code and/or latexified several figures in the Gaussian processes chapter. Here is the list of figures generated by my code:
+Gaussian processes are related to my thesis topic; thus, I wrote code and/or latexified several figures in the Gaussian processes chapter. Here is the list of figures generated by my code:
 
 * Figure 18.2 [[PR 727](https://github.com/probml/pyprobml/pull/727)] explains ARD in Gaussian processes: a) same lengthscale for both dimensions; ii) lengthscale in one dimension dominates the other.
 
@@ -81,7 +81,7 @@ Gaussian processes are related to my thesis topic and thus I wrote code and/or l
 </p>
 
 ## [BIJAX](https://github.com/patel-zeel/bijax): Bayesian Inference in JAX
-We initially thought of writing a generic piece of code to generate multiple Bayesian inference related figures in *book2*. However, realizing the power of Bijactors (transformation functions) in recent methods like [ADVI](https://arxiv.org/abs/1603.00788) and a posibility of applications for a wider community, we are developing BIJAX as a full library. BIJAX supports MAP, [ADVI](https://arxiv.org/abs/1603.00788) and Laplace approximation. We are developing SteinVI and other methods in BIJAX at present.
+We initially thought of writing a generic piece of code to generate multiple Bayesian inference related figures in *book2*. However, realizing the power of Bijactors (transformation functions) in recent methods like [ADVI](https://arxiv.org/abs/1603.00788) and the possibility of applications for a wider community, we are developing BIJAX as a complete library. BIJAX supports MAP, [ADVI](https://arxiv.org/abs/1603.00788) and Laplace approximation. We are developing SteinVI and other methods in BIJAX at present.
 
 Following are the figures developed with BIJAX:
 
@@ -99,7 +99,7 @@ Following are the figures developed with BIJAX:
 
 ## Co-authored section 34.7 - Active learning
 
-We work on active learning in our lab and earlier I have published an [interactive active learning article](https://patel-zeel.github.io/active-learning-visualization/) at VizxAI. Thus, I helped Dr. Murphy write the section on active learning in *book2*. I mentored two of non-GSoC students ([Nitish](https://github.com/nitish1295) and [Ankita](https://github.com/AnkitaKumariJain14)) from our lab at IIT Gandhinagar for generating all figures in this section.
+We work on active learning in our lab, and I have published an [interactive active learning article](https://patel-zeel.github.io/active-learning-visualization/) at VizxAI. Thus, I helped Dr. Murphy write the section on active learning in *book2*. I mentored two non-GSoC students ([Nitish](https://github.com/nitish1295) and [Ankita](https://github.com/AnkitaKumariJain14)) from our lab at IIT Gandhinagar to generate all figures in this section.
 
 <p align="center">
 <img width="545" alt="image" src="https://user-images.githubusercontent.com/59758528/189543023-e9c83265-4781-4a0e-95b2-a9019ab8c520.png">
@@ -107,10 +107,10 @@ We work on active learning in our lab and earlier I have published an [interacti
 
 ## [JAX](https://github.com/google/jax): an ML library in sync with pure Python
 
-During GSoC, I got introduced to JAX for the first time. After some exploration, I found JAX as a quick and computationally fast prototyping library. Tools like `vmap`, `jit`, `tree_util` and `flatten_util` were elementry in the code I wrote during GSoC. I summarized the JAX tricks we learned during the GSoC period [here](https://github.com/probml/pyprobml/blob/master/notebooks/tutorials/practical_jax_tips.ipynb).
+During GSoC, I got introduced to JAX for the first time. After some exploration, I found JAX as a quick and computationally fast prototyping library. Tools like `vmap`, `jit`, `tree_util` and `flatten_util` were elementary in the code I wrote during GSoC. I summarized the JAX tricks we learned during the GSoC period [here](https://github.com/probml/pyprobml/blob/master/notebooks/tutorials/practical_jax_tips.ipynb).
 
 ## Summary of PRs
-Following table containts the list of PRs created during the GSoC period sorted by time.
+The following table contains the list of PRs created during the GSoC period sorted by time.
 
 | URL                                                     | Title                                                           |
 |:--------------------------------------------------------|:----------------------------------------------------------------|
@@ -148,4 +148,4 @@ Following table containts the list of PRs created during the GSoC period sorted 
 
 ## Summary
 
-This GSoC I worked on a big project useful to the academic community around the world and with a wonderful mentor Dr. Kevin Murphy. Simultaniously, I learned my new default ML library JAX and increased my confidence to be able to work on such large projects. I will always be grateful to Dr. Kevin Murphy for this opportunity that helped me add a unique and valuable experience in my PhD journy.
+During this GSoC, I worked on a big valuable project for the academic community worldwide with a wonderful mentor Dr. Kevin Murphy. Simultaneously, I learned my new default ML library JAX and increased my confidence in being able to work on such large projects. I will always be grateful to Dr. Kevin Murphy for this opportunity that helped me add a unique and valuable experience to my Ph.D. journey.
