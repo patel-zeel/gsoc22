@@ -1,6 +1,6 @@
 # GSoC 2022 - Final Work Report
 
-In this gist, I present my work during the Google Summer of Code (GSoC) 2022 program. In the project, I contributed code to a published book [Probabilistic Machine Learning: An Introduction](https://probml.github.io/pml-book/book1.html) (*book1*) and an upcoming book [Probabilistic Machine Learning: Advanced Topics](https://probml.github.io/pml-book/book2.html) (*book2*) by [Kevin P. Murphy](https://www.cs.ubc.ca/~murphyk/).
+In this report, I present my work during the Google Summer of Code (GSoC) 2022 program. In the project, I contributed code to a published book [Probabilistic Machine Learning: An Introduction](https://probml.github.io/pml-book/book1.html) (*book1*) and an upcoming book [Probabilistic Machine Learning: Advanced Topics](https://probml.github.io/pml-book/book2.html) (*book2*) by [Kevin P. Murphy](https://www.cs.ubc.ca/~murphyk/).
 
 I mainly worked on two repositories: i) [pyprobml](https://github.com/probml/pyprobml) (public): a repositiry containing most of the source code for the book; and ii) [bookv2](https://github.com/probml/bookv2) (private): a repository containing source code of the book.
 
